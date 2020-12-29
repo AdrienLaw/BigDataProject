@@ -1,0 +1,44 @@
+package com.adrien.mapreduce.combiner;
+
+import com.adrien.mapreduce.simple.SimpleWordcountMapper;
+import com.adrien.mapreduce.simple.SimpleWordcountReduce;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+
+import java.io.IOException;
+
+/**
+ *
+ * banzhang	4
+ * hadoop	2
+ * hao	2
+ * ni	2
+ * xihuan	2
+ */
+public class WordCountCombinerDriver {
+    public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
+        args = new String[]{"/Users/luohaotian/Downloads/Jennifer/HelloApp/input/combiner",
+                "/Users/luohaotian/Downloads/Jennifer/HelloApp/output/wordcount/combiner"};
+        Configuration conf = new Configuration();
+        Job job = Job.getInstance();
+        job.setJarByClass(WordCountCombinerDriver.class);
+        job.setMapperClass(SimpleWordcountMapper.class);
+        job.setReducerClass(SimpleWordcountReduce.class);
+        job.setMapOutputKeyClass(Text.class);
+        job.setMapOutputValueClass(IntWritable.class);
+        job.setOutputKeyClass(Text.class);
+        job.setOutputValueClass(IntWritable.class);
+
+        job.setCombinerClass(WordCountCombiner.class);
+        FileInputFormat.setInputPaths(job,new Path(args[0]));
+        FileOutputFormat.setOutputPath(job,new Path(args[1]));
+        //7. 提交Job
+        boolean completion = job.waitForCompletion(true);
+        System.exit(completion ? 0 : 1);
+    }
+}

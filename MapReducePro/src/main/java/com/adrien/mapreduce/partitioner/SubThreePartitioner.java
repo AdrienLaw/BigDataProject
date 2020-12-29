@@ -12,10 +12,12 @@ public class SubThreePartitioner extends Partitioner<ComFlowBean, Text> {
         String subThree = text.toString().substring(0, 3);
         int partition = 4;
         if ("136".equals(subThree)) {
-            partition = 1;
+            partition = 0;
         } else if ("137".equals(subThree)) {
-            partition = 2;
+            partition = 1;
         } else if ("138".equals(subThree)) {
+            partition = 2;
+        } else if ("139".equals(subThree)) {
             partition = 3;
         }
         return partition;
