@@ -16,7 +16,6 @@ import java.io.IOException;
  */
 @Setter
 @Getter
-
 public class FlowBean implements Writable {
     //上行流量
     private long upFlow;
@@ -71,5 +70,29 @@ public class FlowBean implements Writable {
                 ", downFlow=" + downFlow +
                 ", sumFlow=" + sumFlow +
                 '}';
+    }
+
+    public long getUpFlow() {
+        return upFlow;
+    }
+
+    public void setUpFlow(long upFlow) {
+        this.upFlow = upFlow;
+    }
+
+    public long getDownFlow() {
+        return downFlow;
+    }
+
+    public void setDownFlow(long downFlow) {
+        this.downFlow = downFlow;
+    }
+
+    public long getSumFlow() {
+        return sumFlow;
+    }
+
+    public void setSumFlow(long sumFlow) {
+        this.sumFlow = sumFlow;
     }
 }
