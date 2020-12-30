@@ -1,5 +1,7 @@
-package com.adrien.mapreduce.simple;
+package com.adrien.mapreduce.combiner2;
 
+import com.adrien.mapreduce.simple.SimpleWordcountMapper;
+import com.adrien.mapreduce.simple.SimpleWordcountReducer;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
@@ -10,27 +12,25 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 import java.io.IOException;
 
-public class SimpleWordcountDriver {
+public class WordCountCombiner2Driver {
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
-        args = new String[]{"/Users/luohaotian/Downloads/Jennifer/HelloApp/input/wordCount",
-                "/Users/luohaotian/Downloads/Jennifer/HelloApp/output/wordCount"};
-        Configuration configuration = new Configuration();
-        //1. 获取 Job 对象
-        Job job = Job.getInstance(configuration);
-        //2. 设置 jar 的路径
-        job.setJarByClass(SimpleWordcountDriver.class);
-        //3.关联 mapper 和 reducer
-        job.setMapOutputKeyClass(Text.class);
-        job.setMapOutputValueClass(IntWritable.class);
-        //4. 设置 mapper 输出的 key 和 value 类型
+        args = new String[]{"/Users/luohaotian/Downloads/Jennifer/HelloApp/input/combiner",
+                "/Users/luohaotian/Downloads/Jennifer/HelloApp/output/wordcount/combiner2"};
+        Configuration conf = new Configuration();
+        Job job = Job.getInstance();
+        job.setJarByClass(WordCountCombiner2Driver.class);
         job.setMapperClass(SimpleWordcountMapper.class);
         job.setReducerClass(SimpleWordcountReducer.class);
-        //5. 设置最终输出的 key 和 value 类型
+        job.setMapOutputKeyClass(Text.class);
+        job.setMapOutputValueClass(IntWritable.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
+
+        job.setCombinerClass(SimpleWordcountReducer.class);
         FileInputFormat.setInputPaths(job,new Path(args[0]));
         FileOutputFormat.setOutputPath(job,new Path(args[1]));
+        //7. 提交Job
         boolean completion = job.waitForCompletion(true);
-        System.exit(completion ? 1:0);
+        System.exit(completion ? 0 : 1);
     }
 }

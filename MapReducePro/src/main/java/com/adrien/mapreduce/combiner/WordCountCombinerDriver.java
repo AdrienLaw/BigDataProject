@@ -1,7 +1,7 @@
 package com.adrien.mapreduce.combiner;
 
 import com.adrien.mapreduce.simple.SimpleWordcountMapper;
-import com.adrien.mapreduce.simple.SimpleWordcountReduce;
+import com.adrien.mapreduce.simple.SimpleWordcountReducer;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
@@ -28,7 +28,7 @@ public class WordCountCombinerDriver {
         Job job = Job.getInstance();
         job.setJarByClass(WordCountCombinerDriver.class);
         job.setMapperClass(SimpleWordcountMapper.class);
-        job.setReducerClass(SimpleWordcountReduce.class);
+        job.setReducerClass(SimpleWordcountReducer.class);
         job.setMapOutputKeyClass(Text.class);
         job.setMapOutputValueClass(IntWritable.class);
         job.setOutputKeyClass(Text.class);
