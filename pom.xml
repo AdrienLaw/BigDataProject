@@ -11,6 +11,7 @@
     <modules>
         <module>HDFSPro</module>
         <module>MapReducePro</module>
+        <module>zkPro</module>
     </modules>
 
     <dependencies>
