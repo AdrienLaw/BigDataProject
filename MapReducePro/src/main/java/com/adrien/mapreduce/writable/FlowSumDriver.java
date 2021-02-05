@@ -31,6 +31,5 @@ public class FlowSumDriver {
         FileOutputFormat.setOutputPath(job,new Path(args[1]));
         boolean completion = job.waitForCompletion(true);
         System.exit(completion ? 1:0);
-
     }
 }
