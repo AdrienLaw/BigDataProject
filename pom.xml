@@ -13,6 +13,7 @@
         <module>MapReducePro</module>
         <module>zkPro</module>
         <module>HivePro</module>
+        <module>ESPro</module>
     </modules>
 
     <dependencies>

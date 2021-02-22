@@ -25,5 +25,5 @@ hs_err_pid*
 .idea/*
 src/test/
 HDFSPro.iml
-
+ESPro/*.iml
 zkPro.iml
