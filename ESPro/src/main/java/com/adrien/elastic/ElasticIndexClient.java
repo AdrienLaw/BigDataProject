@@ -1,10 +1,13 @@
-package com.adrien.elastic.test;
+package com.adrien.elastic;
 
 
 import org.apache.http.HttpHost;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequest;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
+import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.admin.indices.get.GetIndexRequest;
+import org.elasticsearch.action.admin.indices.get.GetIndexResponse;
+import org.elasticsearch.action.support.master.AcknowledgedResponse;
 import org.elasticsearch.client.ElasticsearchClient;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
@@ -14,10 +17,9 @@ import org.elasticsearch.common.unit.TimeValue;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.Arrays;
 
-public class ESTest {
-
-
+public class ElasticIndexClient {
 
     //创建索引
     @Test
@@ -47,6 +49,28 @@ public class ESTest {
         getIndexRequest.indices("goods");
         boolean exists = levelClient.indices().exists(getIndexRequest, RequestOptions.DEFAULT);
         System.out.println("索引goods:" + exists);
+        levelClient.close();
+    }
+
+    //删除索引
+    @Test
+    public void deleteIndex () throws IOException {
+        RestHighLevelClient levelClient = new RestHighLevelClient(RestClient.builder(new HttpHost("hadoop103", 9200, "http")));
+        DeleteIndexRequest indexRequest = new DeleteIndexRequest("goods");
+        indexRequest.timeout(TimeValue.timeValueMinutes(2));
+        indexRequest.masterNodeTimeout(TimeValue.timeValueMinutes(5));
+        AcknowledgedResponse acknowledgedResponse = levelClient.indices().delete(indexRequest, RequestOptions.DEFAULT);
+        System.out.println("isAcknowledged" + acknowledgedResponse.isAcknowledged());
+        levelClient.close();
+    }
+
+    //获取索引
+    @Test
+    public void getIndex () throws IOException {
+        RestHighLevelClient levelClient = new RestHighLevelClient(RestClient.builder(new HttpHost("hadoop103", 9200, "http")));
+        GetIndexRequest indexRequest = new GetIndexRequest().indices("movies");
+        GetIndexResponse indexResponse = levelClient.indices().get(indexRequest, RequestOptions.DEFAULT);
+        System.out.println(Arrays.toString(indexResponse.getIndices()));
         levelClient.close();
     }
 }

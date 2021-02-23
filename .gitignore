@@ -27,3 +27,8 @@ src/test/
 HDFSPro.iml
 ESPro/*.iml
 zkPro.iml
+ESPro/target
+HDFSPro/target
+HivePro/target
+MapReducePro/target
+zkPro/target
