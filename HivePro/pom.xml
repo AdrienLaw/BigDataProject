@@ -28,8 +28,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
+      <version>RELEASE</version>
     </dependency>
 
     <dependency>
@@ -43,6 +42,29 @@
       <artifactId>hive-exec</artifactId>
       <version>0.13.1</version>
     </dependency>
+
+
+    <!-- https://mvnrepository.com/artifact/org.apache.hive/hive-metastore -->
+    <dependency>
+      <groupId>org.apache.hive</groupId>
+      <artifactId>hive-metastore</artifactId>
+      <version>0.13.1</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.apache.hive/hive-service -->
+    <dependency>
+      <groupId>org.apache.hive</groupId>
+      <artifactId>hive-service</artifactId>
+      <version>0.13.1</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-common -->
+    <dependency>
+      <groupId>org.apache.hadoop</groupId>
+      <artifactId>hadoop-common</artifactId>
+      <version>2.7.2</version>
+    </dependency>
+
   </dependencies>
 
   <build>
