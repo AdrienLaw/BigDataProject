@@ -30,7 +30,8 @@ zkPro.iml
 ESPro/target
 HDFSPro/target
 HivePro/target
-HivePro/*.iml
+*/*.iml
+HBasePro/*.iml
 MapReducePro/target
 zkPro/target
 
