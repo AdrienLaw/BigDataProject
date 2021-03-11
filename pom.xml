@@ -14,6 +14,7 @@
         <module>zkPro</module>
         <module>HivePro</module>
         <module>ESPro</module>
+        <module>HBasePro</module>
     </modules>
 
     <dependencies>
