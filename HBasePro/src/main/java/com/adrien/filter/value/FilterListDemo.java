@@ -1,18 +1,16 @@
-package com.adrien.filter;
+package com.adrien.filter.value;
 
-import com.adrien.basic.HBaseDML;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
-import org.apache.hadoop.hbase.filter.CompareFilter;
-import org.apache.hadoop.hbase.filter.SubstringComparator;
-import org.apache.hadoop.hbase.filter.ValueFilter;
+import org.apache.hadoop.hbase.filter.*;
 import org.apache.hadoop.hbase.util.Bytes;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-public class ValueFilterDemo {
+public class FilterListDemo {
     public static void main(String[] args) {
         try {
             Configuration configuration = HBaseConfiguration.create();
@@ -20,8 +18,15 @@ public class ValueFilterDemo {
             Connection connection = ConnectionFactory.createConnection(configuration);
             Table table = connection.getTable(TableName.valueOf("test"));
             Scan scan = new Scan();
-            ValueFilter filter = new ValueFilter(CompareFilter.CompareOp.EQUAL, new SubstringComparator("adrien"));
-            scan.setFilter(filter);
+            ArrayList<Filter> filters = new ArrayList<>();
+            Filter filter1 = new SingleColumnValueFilter(Bytes.toBytes("info"),Bytes.toBytes("name"),
+                    CompareFilter.CompareOp.EQUAL,new SubstringComparator("adrien"));
+            Filter filter2 = new SingleColumnValueFilter(Bytes.toBytes("info"),Bytes.toBytes("name"),
+                    CompareFilter.CompareOp.EQUAL,new BinaryComparator(Bytes.toBytes(22)));
+            filters.add(filter1);
+            filters.add(filter2);
+            FilterList filterList = new FilterList(FilterList.Operator.MUST_PASS_ONE,filters);
+            scan.setFilter(filterList);
             ResultScanner results = table.getScanner(scan);
             for (Result result : results) {
                 String name = Bytes.toString(result.getValue(Bytes.toBytes("info"), Bytes.toBytes("name")));

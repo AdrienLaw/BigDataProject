@@ -36,8 +36,8 @@ public class HBaseDML {
         try {
             Connection connection = init();
             Table table = connection.getTable(TableName.valueOf("test"));
-            Put put = new Put(Bytes.toBytes("20003"));
-            put.addColumn(Bytes.toBytes("info"),Bytes.toBytes("name"),Bytes.toBytes("adrien"));
+            Put put = new Put(Bytes.toBytes("2021_01_03_0001"));
+            put.addColumn(Bytes.toBytes("info"),Bytes.toBytes("name"),Bytes.toBytes("jennifer"));
             table.put(put);
             destroy(table);
         } catch (IOException e) {

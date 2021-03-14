@@ -1,18 +1,15 @@
-package com.adrien.filter;
+package com.adrien.filter.value;
 
-import com.adrien.basic.HBaseDML;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
-import org.apache.hadoop.hbase.filter.CompareFilter;
-import org.apache.hadoop.hbase.filter.SubstringComparator;
-import org.apache.hadoop.hbase.filter.ValueFilter;
+import org.apache.hadoop.hbase.filter.*;
 import org.apache.hadoop.hbase.util.Bytes;
 
 import java.io.IOException;
 
-public class ValueFilterDemo {
+public class RandomRowFilterDemo {
     public static void main(String[] args) {
         try {
             Configuration configuration = HBaseConfiguration.create();
@@ -20,7 +17,7 @@ public class ValueFilterDemo {
             Connection connection = ConnectionFactory.createConnection(configuration);
             Table table = connection.getTable(TableName.valueOf("test"));
             Scan scan = new Scan();
-            ValueFilter filter = new ValueFilter(CompareFilter.CompareOp.EQUAL, new SubstringComparator("adrien"));
+            Filter filter = new RandomRowFilter(new Float(0.5));
             scan.setFilter(filter);
             ResultScanner results = table.getScanner(scan);
             for (Result result : results) {
