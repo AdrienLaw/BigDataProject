@@ -1,0 +1,10 @@
+option java_package = "com.adrien.filter";
+option java_outer_classname = "HerFilter";
+option java_generic_services = true;
+option java_generate_equals_and_hash = true;
+option optimize_for = SPEED;
+
+message MyFilterDemo {
+  required bytes columnA = 1;
+  required bytes columnB = 2;
+}

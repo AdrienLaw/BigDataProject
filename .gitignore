@@ -34,4 +34,7 @@ HivePro/target
 HBasePro/*.iml
 MapReducePro/target
 zkPro/target
+HBasePro/target
+.DS_Store
+
 

@@ -1,4 +1,4 @@
-package com.adrien.filter;
+package com.adrien.filter.value;
 
 import com.adrien.basic.HBaseDML;
 import org.apache.hadoop.conf.Configuration;

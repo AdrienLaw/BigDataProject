@@ -36,8 +36,8 @@ public class HBaseDML {
         try {
             Connection connection = init();
             Table table = connection.getTable(TableName.valueOf("test"));
-            Put put = new Put(Bytes.toBytes("2021_01_03_0001"));
-            put.addColumn(Bytes.toBytes("info"),Bytes.toBytes("name"),Bytes.toBytes("jennifer"));
+            Put put = new Put(Bytes.toBytes("40001"));
+            put.addColumn(Bytes.toBytes("info"),Bytes.toBytes("age"),Bytes.toBytes(3));
             table.put(put);
             destroy(table);
         } catch (IOException e) {
@@ -74,7 +74,7 @@ public class HBaseDML {
             Connection connection = init();
             Table table = connection.getTable(TableName.valueOf("test"));
             //输出 20001 - 20002 - 20003
-            Scan scan = new Scan(Bytes.toBytes("20001"), Bytes.toBytes("20004"));
+            Scan scan = new Scan(Bytes.toBytes("40001"), Bytes.toBytes("40004"));
             scan.addColumn(Bytes.toBytes("info"), Bytes.toBytes("name"));
             //设置是否缓存，默认是true。但是mr不是热数据，可以用false。
             scan.setCacheBlocks(false);

@@ -15,6 +15,9 @@
         <module>HivePro</module>
         <module>ESPro</module>
         <module>HBasePro</module>
+        <module>KafkaPro</module>
+        <module>KafkaCPPro</module>
+        <module>ScalaExe</module>
     </modules>
 
     <dependencies>
