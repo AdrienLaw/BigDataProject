@@ -18,6 +18,7 @@
         <module>KafkaPro</module>
         <module>KafkaCPPro</module>
         <module>ScalaExe</module>
+        <module>ScalaPro</module>
     </modules>
 
     <dependencies>
