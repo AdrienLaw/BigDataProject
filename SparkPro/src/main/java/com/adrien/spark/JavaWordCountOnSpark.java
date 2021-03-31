@@ -1,4 +1,4 @@
-package com.adrien.spark;
+package com.adrien.core.spark;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
