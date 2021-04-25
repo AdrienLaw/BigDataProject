@@ -1,4 +1,4 @@
-package com.adrien.udf;
+package com.adrien.sql.udf;
 
 import org.apache.hadoop.hive.ql.exec.UDF;
 import org.apache.hadoop.io.Text;

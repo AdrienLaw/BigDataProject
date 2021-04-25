@@ -13,7 +13,7 @@ object SparkSqlwithHive {
       .config("spark.sql.warehouse.dir", "hdfs://hadoop101:9000/tmp/hive/warehouse")
       .getOrCreate()
 
-    val rdd = spark.sql("select * from db_bak.emp_bak").cache()
+    val rdd = spark.sql("select * from sparkhive.city_info").cache()
     rdd.show(false)
   }
 }

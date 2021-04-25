@@ -1,0 +1,29 @@
+package com.adrien.sql.udf
+
+import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.expressions.Window
+
+object WindowAvgUDF {
+  def main(args: Array[String]): Unit = {
+      val spark = SparkSession      .builder().master("local[1]")      .appName("Spark SQL basic example")      .getOrCreate()
+      import spark.implicits._
+      val df = List(
+        ("站点1", "2017-01-01", 50),
+        ("站点1", "2017-01-02", 45),
+        ("站点1", "2017-01-03", 55),
+        ("站点2", "2017-01-01", 25),
+        ("站点2", "2017-01-02", 29),
+        ("站点2", "2017-01-03", 27)
+      ).toDF("site", "date", "user_cnt")
+
+      import org.apache.spark.sql.expressions.Window
+      import org.apache.spark.sql.functions._
+
+      val wSpec = Window.partitionBy("site")
+        .orderBy("date")
+        .rowsBetween(-1, 1)
+
+      df.withColumn("movingAvg",
+        avg(df("user_cnt")).over(wSpec)).show()
+    }
+}

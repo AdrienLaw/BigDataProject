@@ -19,6 +19,7 @@
         <module>KafkaCPPro</module>
         <module>ScalaExe</module>
         <module>ScalaPro</module>
+        <module>SparkStreamingPro</module>
     </modules>
 
     <dependencies>
