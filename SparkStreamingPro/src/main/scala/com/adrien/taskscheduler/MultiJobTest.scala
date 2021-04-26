@@ -29,7 +29,7 @@ object MultiJobTest {
         spark.sparkContext.setLocalProperty("spark.scheduler.pool", "take-pool")
         val data = rdd.sortByKey().take(10)
         println(s"Data Samples: ")
-        data.foreach { x => println(x.mkString(", ")) }
+        //data.foreach { x => println(x.mkString(", ")) }
       }
     })
 
