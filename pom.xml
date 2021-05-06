@@ -20,6 +20,7 @@
         <module>ScalaExe</module>
         <module>ScalaPro</module>
         <module>SparkStreamingPro</module>
+        <module>FlinkPro</module>
     </modules>
 
     <dependencies>
