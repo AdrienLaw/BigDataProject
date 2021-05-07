@@ -21,7 +21,7 @@ public class UdfCustomMapFunction_Collection {
         });
         // 调用自定义CustomMapFunction类的，转换输出
         SingleOutputStreamOperator<String> dataStreamMap = stream01.map(new CustomMapFunction());
-        dataStreamMap.print("CustomFilterFunction");
+        //dataStreamMap.print("CustomFilterFunction");
         enev.execute("Function test");
     }
 }

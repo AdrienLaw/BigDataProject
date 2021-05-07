@@ -18,7 +18,7 @@ public class UdfCustomFilterFunction_Collection {
             }
         });
         SingleOutputStreamOperator<SensorReading> filterStream = mapStream.filter(new CustomFilterFunction());
-        filterStream .print("CustomFilterFunction");
+        //filterStream .print("CustomFilterFunction");
         enev.execute("Function test");
     }
 }
