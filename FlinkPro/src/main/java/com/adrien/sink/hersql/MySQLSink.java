@@ -1,4 +1,4 @@
-package com.adrien.sink.kafka;
+package com.adrien.sink.hersql;
 
 import com.adrien.sources.SensorReading;
 import org.apache.flink.api.common.functions.FlatMapFunction;
@@ -40,11 +40,11 @@ public class MySQLSink extends RichSinkFunction<Tuple3<String,String,String>> {
         String USERNAME = "root" ;
         String PASSWORD = "123123";
         String DRIVERNAME = "com.mysql.jdbc.Driver";
-        String DBURL = "jdbc:mysql://localhost:3306/flink";
+        String DBURL = "jdbc:mysql://hadoop101:3306/flink";
         // 加载JDBC驱动
         Class.forName(DRIVERNAME);
         connection = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
-        String sql = "insert into kafka_message( timeseq, thread, message) values (?,?,?)";
+        String sql = "insert into kafka_message(id, age, name,password) values (?,14,?,?)";
         statement = connection.prepareStatement(sql);
         super.open(parameters);
     }
@@ -57,12 +57,12 @@ public class MySQLSink extends RichSinkFunction<Tuple3<String,String,String>> {
     @Override
     public void invoke(Tuple3<String,String,String> data) throws Exception {
         try {
-            String timeseq = data.getField(0);
-            String thread = data.getField(1);
-            String message = data.getField(2);
-            statement.setString(1,timeseq);
-            statement.setString(2,thread);
-            statement.setString(3,message);
+            String id = data.getField(0);
+            String name = data.getField(1);
+            String password = data.getField(2);
+            statement.setString(1,id);
+            statement.setString(2,name);
+            statement.setString(3,password);
             statement.executeUpdate();
         }catch (Exception e){
             e.printStackTrace();
@@ -79,7 +79,6 @@ public class MySQLSink extends RichSinkFunction<Tuple3<String,String,String>> {
         }
         super.close();
     }
-
 }
 
 

@@ -1,4 +1,4 @@
-package com.adrien.sink.kafka;
+package com.adrien.sink.elasticsearch;
 
 import org.apache.flink.streaming.connectors.elasticsearch6.RestClientFactory;
 import org.apache.http.Header;
