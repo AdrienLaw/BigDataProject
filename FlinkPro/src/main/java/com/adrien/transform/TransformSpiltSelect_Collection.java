@@ -43,6 +43,7 @@ public class TransformSpiltSelect_Collection {
                 return splits;
             }
         });
+
         DataStream<PersonInfo> shandong = splitStream.select("shandong");
         DataStream<PersonInfo> jiangsu = splitStream.select("jiangsu");
         /*一级分流结果*/
@@ -51,13 +52,14 @@ public class TransformSpiltSelect_Collection {
             public Object map(PersonInfo personInfo) throws Exception {
                 return personInfo.toString();
             }
-        }).print();
+        }).print("山东一级分流");
+
         jiangsu.map(new MapFunction<PersonInfo, Object>() {
             @Override
             public Object map(PersonInfo personInfo) throws Exception {
                 return personInfo.toString();
             }
-        }).print();
+        }).print("江苏一级分流");
         enev.execute();
     }
 }

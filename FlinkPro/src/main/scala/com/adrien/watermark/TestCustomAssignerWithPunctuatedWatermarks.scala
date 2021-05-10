@@ -11,9 +11,9 @@ object TestCustomAssignerWithPunctuatedWatermarks extends App {
 
   val stream1: DataStream[String] = env.socketTextStream("localhost",9999)
 
-  val stream2: DataStream[Obj6] = stream1.map(data => {
-    val arr = data.split(",")
-    Obj6(arr(0), arr(1).toLong)
-  }).assignTimestampsAndWatermarks(new CustomPunctuatedAssigner[Obj6])
+//  val stream2: DataStream[Obj6] = stream1.map(data => {
+//    val arr = data.split(",")
+//    Obj6(arr(0), arr(1).toLong)
+//  }).assignTimestampsAndWatermarks(new CustomPunctuatedAssigner[Obj5])
   env.execute()
 }
