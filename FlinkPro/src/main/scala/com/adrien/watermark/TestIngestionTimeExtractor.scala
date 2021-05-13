@@ -14,5 +14,6 @@ object TestIngestionTimeExtractor extends App {
     val arr = data.split(",")
     Obj4(arr(0), arr(1).toLong)
   }).assignTimestampsAndWatermarks(new IngestionTimeExtractor[Obj4])
+  stream2.print()
   env.execute()
 }

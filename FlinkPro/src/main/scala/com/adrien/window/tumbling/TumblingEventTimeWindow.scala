@@ -13,7 +13,7 @@ import org.apache.flink.streaming.api.windowing.time.Time
 object TumblingEventTimeWindow extends App {
   val enev:StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
   enev.setStreamTimeCharacteristic(TimeCharacteristic.EventTime)
-  val stream01: DataStream[String] = enev.socketTextStream("hadoop101",9001)
+  val stream01: DataStream[String] = enev.socketTextStream("localhost",9001)
   stream01.print("stream1")
   val stream02: DataStream[Obj1] = stream01.map(data => {
     val arr = data.split(",")

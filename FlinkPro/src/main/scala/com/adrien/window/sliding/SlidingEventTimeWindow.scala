@@ -29,5 +29,4 @@ object SlidingEventTimeWindow extends App {
     .reduce(new MinDataReduceFunction)
     .print("SlidingEventTimeWindow")
   enev.execute()
-
 }

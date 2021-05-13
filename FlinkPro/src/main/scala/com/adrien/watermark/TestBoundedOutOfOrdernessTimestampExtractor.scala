@@ -20,5 +20,6 @@ object TestBoundedOutOfOrdernessTimestampExtractor extends App {
     ) {
       override def extractTimestamp(element: Obj3) = element.time * 1000
     })
+  stream2.print()
   env.execute()
 }

@@ -19,4 +19,6 @@ object TestAscendingTimestampExtractor extends App {
       element.time + 2000
     }
   })
+  stream2.print()
+  env.execute()
 }
